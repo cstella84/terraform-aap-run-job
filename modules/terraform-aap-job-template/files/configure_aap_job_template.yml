@@ -4,7 +4,7 @@
   connection: local
   gather_facts: false
   vars:
-    # These vars are expected to be passed via --extra-vars by Terraform
+    # These vars are expected to be passed by Terraform
     # aap_controller_host: "https://your-aap-url"
     # aap_controller_username: "admin"
     # aap_controller_password: "password"

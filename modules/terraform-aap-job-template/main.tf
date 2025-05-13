@@ -21,17 +21,6 @@ resource "ansible_playbook" "configure_aap_resources" {
   depends_on = [aap_inventory.demo_inventory]
 }
 
-## Get the job template ID from the playbook execution
-# resource "null_resource" "get_job_template_id" {
-#   provisioner "local-exec" {
-#     command = <<EOT
-#       echo "${ansible_playbook.configure_aap_resources.summary}"
-#       # Extract the job template ID from the playbook execution summary
-#       # This is a placeholder; actual extraction logic will depend on the playbook output format
-#     EOT
-#   }
-# }
-
 data "http" "job_template_id" {
   url = "${var.aap_controller_url}/api/controller/v2/job_templates/?name=${var.job_template_name_from_playbook}"
 

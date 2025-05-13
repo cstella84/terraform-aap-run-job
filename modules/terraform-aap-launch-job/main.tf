@@ -1,4 +1,4 @@
-# 2. Add the EC2 instance as a host to the inventory
+# Add the EC2 instance as a host to the inventory
 resource "aap_host" "ec2_host" {
   name         = "ec2-instance-${var.ec2_instance_address}" # Giving a unique name based on address
   description  = "EC2 instance managed by Terraform"
@@ -9,11 +9,7 @@ resource "aap_host" "ec2_host" {
   enabled = true
 }
 
-# 3. Execute the Ansible playbook to create the Project and Job Template
-# This playbook uses the inventory name created above.
-
-
-# 4. Launch a job using the job template (created by playbook) and inventory (created by TF)
+# Launch a job using the job template (created by playbook) and inventory (created by TF)
 resource "aap_job" "run_hello_world" {
   job_template_id = var.job_template_id
   inventory_id    = var.inventory_id
