@@ -15,7 +15,7 @@
     # inventory_name_for_jt: "Terraform Demo Inventory" # Name of inventory created by TF
 
   tasks:
-    - name: Ensure Project for Hello World Playbook exists
+    - name: Create Project for Hello World Playbook
       ansible.controller.project:
         name: "{{ project_name_for_playbook }}"
         organization: "{{ aap_organization_name }}"
@@ -26,17 +26,17 @@
         controller_username: "{{ aap_controller_username }}"
         controller_password: "{{ aap_controller_password }}"
         validate_certs: "{{ aap_validate_certs | default(false) }}"
-        wait: true # Wait for project to sync
+        wait: true
         state: present
 
-    - name: Ensure Job Template for Hello World Playbook exists
+    - name: Create Job Template for Hello World Playbook
       ansible.controller.job_template:
         name: "{{ job_template_name_from_playbook }}"
         description: "Job template for hello-world-playbook.yml from GitHub, configured by Ansible playbook."
         job_type: run
-        inventory: "{{ inventory_name_for_jt }}" # Must match the name of inventory created by Terraform
+        inventory: "{{ inventory_name_for_jt }}"
         project: "{{ project_name_for_playbook }}"
-        playbook: "hello-world-playbook.yml" # Relative to the project root in GitHub
+        playbook: "hello-world-playbook.yml"
         controller_host: "{{ aap_controller_host }}"
         controller_username: "{{ aap_controller_username }}"
         controller_password: "{{ aap_controller_password }}"
