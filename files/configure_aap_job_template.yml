@@ -1,0 +1,44 @@
+---
+- name: Configure AAP Project and Job Template
+  hosts: localhost
+  connection: local
+  gather_facts: false
+  vars:
+    # These vars are expected to be passed via --extra-vars by Terraform
+    # aap_controller_host: "https://your-aap-url"
+    # aap_controller_username: "admin"
+    # aap_controller_password: "password"
+    # aap_validate_certs: false
+    # aap_organization_name: "Default"
+    # project_name_for_playbook: "Ansible Hello World Git (Playbook)"
+    # job_template_name_from_playbook: "Hello World Job (Playbook)"
+    # inventory_name_for_jt: "Terraform Demo Inventory" # Name of inventory created by TF
+
+  tasks:
+    - name: Ensure Project for Hello World Playbook exists
+      ansible.controller.project:
+        name: "{{ project_name_for_playbook }}"
+        organization: "{{ aap_organization_name }}"
+        scm_type: git
+        scm_url: "https://github.com/cstella84/ansible-hello-world.git"
+        scm_branch: "main"
+        controller_host: "{{ aap_controller_host }}"
+        controller_username: "{{ aap_controller_username }}"
+        controller_password: "{{ aap_controller_password }}"
+        validate_certs: "{{ aap_validate_certs | default(false) }}"
+        wait: true # Wait for project to sync
+        state: present
+
+    - name: Ensure Job Template for Hello World Playbook exists
+      ansible.controller.job_template:
+        name: "{{ job_template_name_from_playbook }}"
+        description: "Job template for hello-world-playbook.yml from GitHub, configured by Ansible playbook."
+        job_type: run
+        inventory: "{{ inventory_name_for_jt }}" # Must match the name of inventory created by Terraform
+        project: "{{ project_name_for_playbook }}"
+        playbook: "hello-world-playbook.yml" # Relative to the project root in GitHub
+        controller_host: "{{ aap_controller_host }}"
+        controller_username: "{{ aap_controller_username }}"
+        controller_password: "{{ aap_controller_password }}"
+        validate_certs: "{{ aap_validate_certs | default(false) }}"
+        state: present

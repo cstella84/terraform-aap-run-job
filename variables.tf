@@ -1,0 +1,51 @@
+variable "ec2_instance_address" {
+  description = "The IP address or hostname of the EC2 instance to be added to the AAP inventory."
+  type        = string
+}
+
+variable "aap_controller_url" {
+  description = "URL of the Ansible Automation Platform controller (e.g., https://your-aap-url)."
+  type        = string
+}
+
+variable "aap_controller_username" {
+  description = "Username for the Ansible Automation Platform controller."
+  type        = string
+  default     = "admin"
+}
+
+variable "aap_controller_password" {
+  description = "Password for the Ansible Automation Platform controller."
+  type        = string
+  sensitive   = true
+}
+
+variable "aap_validate_certs" {
+  description = "Whether to validate the SSL certificate of the AAP controller."
+  type        = bool
+  default     = false
+}
+
+variable "aap_organization_name" {
+  description = "The name of the organization in AAP."
+  type        = string
+  default     = "Default"
+}
+
+variable "project_name_for_playbook" {
+  description = "Name for the project in AAP that points to the hello-world playbook repository."
+  type        = string
+  default     = "Ansible Hello World Git (Playbook TF)"
+}
+
+variable "job_template_name_from_playbook" {
+  description = "Name for the job template in AAP that will be created by the Ansible playbook."
+  type        = string
+  default     = "Hello World Job (Playbook TF)"
+}
+
+variable "inventory_name_tf" {
+  description = "Name for the inventory to be created by Terraform in AAP."
+  type        = string
+  default     = "Terraform Demo Inventory (TF)"
+}
