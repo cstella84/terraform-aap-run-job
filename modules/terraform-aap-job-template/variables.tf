@@ -1,8 +1,3 @@
-variable "ec2_instance_address" {
-  description = "The IP address or hostname of the EC2 instance to be added to the AAP inventory."
-  type        = string
-}
-
 variable "aap_controller_url" {
   description = "URL of the Ansible Automation Platform controller (e.g., https://your-aap-url)."
   type        = string
@@ -20,10 +15,10 @@ variable "aap_controller_password" {
   sensitive   = true
 }
 
-variable "aap_insecure_skip_verify" {
-  description = "Whether to skip SSL certificate validation for the AAP controller."
+variable "aap_validate_certs" {
+  description = "Whether to validate the SSL certificate of the AAP controller."
   type        = bool
-  default     = true
+  default     = false
 }
 
 variable "aap_organization_name" {
@@ -39,7 +34,7 @@ variable "project_name_for_playbook" {
 }
 
 variable "job_template_name_from_playbook" {
-  description = "Name for the job template in AAP that will be created by the Ansible playbook."
+  description = "Name of the job template in AAP that will be created by the Ansible playbook."
   type        = string
   default     = "Hello World Job (Playbook TF)"
 }

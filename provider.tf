@@ -1,20 +1,20 @@
 terraform {
   required_providers {
-    aap = {
-      source  = "ansible/aap"
-      # Specify a version constraint if needed, e.g., version = ">= 2.1.0"
-    }
     ansible = {
       source = "ansible/ansible"
-      # Specify a version constraint if needed
+      version = ">= 1.3.0"
+    }
+    aap = {
+      source  = "ansible/aap"
+      version = ">= 1.1.2"
     }
   }
 }
 
 provider "aap" {
-  controller_host  = var.aap_controller_url
+  host  = var.aap_controller_url
   username         = var.aap_controller_username
   password         = var.aap_controller_password
-  validate_certs   = var.aap_validate_certs
-  request_timeout  = 120 # Optional: Increase timeout for longer operations
+  insecure_skip_verify   = var.aap_insecure_skip_verify
+  timeout  = 120 # Optional: Increase timeout for longer operations
 }
