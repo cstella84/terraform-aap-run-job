@@ -15,7 +15,7 @@ resource "aap_job" "run_hello_world" {
   inventory_id    = var.inventory_id
 
   # This ensures the playbook has run and (hopefully) created the job template
-  depends_on = [ aap_host.ec2_host]
+  depends_on = [aap_host.ec2_host]
 }
 
 output "host_id" {
