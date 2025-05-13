@@ -36,7 +36,7 @@ variable "project_name_for_playbook" {
 variable "job_template_name_from_playbook" {
   description = "Name of the job template in AAP that will be created by the Ansible playbook."
   type        = string
-  default     = "Hello World Job (Playbook TF)"
+  default     = "hello-world-job"
 }
 
 variable "inventory_name_tf" {
