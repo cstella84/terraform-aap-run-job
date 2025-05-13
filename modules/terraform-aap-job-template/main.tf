@@ -12,6 +12,7 @@ resource "ansible_playbook" "configure_aap_resources" {
     aap_controller_password       = var.aap_controller_password # Note: Passing sensitive data to playbook
     aap_validate_certs            = var.aap_validate_certs
     aap_organization_name         = var.aap_organization_name
+    aap_validate_certs            = var.aap_validate_certs
     project_name_for_playbook     = var.project_name_for_playbook
     job_template_name_from_playbook = var.job_template_name_from_playbook
     inventory_name_for_jt         = aap_inventory.demo_inventory.name # Pass the name of the TF-created inventory
@@ -28,6 +29,8 @@ data "http" "job_template_id" {
     Accept        = "application/json"
     Authorization = "Basic ${base64encode("${var.aap_controller_username}:${var.aap_controller_password}")}"
   }
+
+  insecure = true
 
   depends_on = [ aap_inventory.demo_inventory, ansible_playbook.configure_aap_resources ]
 }

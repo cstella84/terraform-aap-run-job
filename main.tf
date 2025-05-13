@@ -4,7 +4,7 @@ module "terraform_aap_job_template" {
   aap_controller_url           = var.aap_controller_url
   aap_controller_username       = var.aap_controller_username
   aap_controller_password       = var.aap_controller_password
-  aap_validate_certs            = var.aap_insecure_skip_verify
+  aap_validate_certs            = false
   aap_organization_name         = var.aap_organization_name
   project_name_for_playbook     = var.project_name_for_playbook
   job_template_name_from_playbook = var.job_template_name_from_playbook
