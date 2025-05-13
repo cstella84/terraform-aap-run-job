@@ -9,6 +9,8 @@ module "terraform_aap_job_template" {
   project_name_for_playbook     = var.project_name_for_playbook
   job_template_name_from_playbook = var.job_template_name_from_playbook
   inventory_name_tf             = var.inventory_name_tf
+  machine_credential_private_key = var.machine_credential_private_key
+  machine_credential_name = var.machine_credential_name
 }
 
 module "terraform_aap_launch_job" {

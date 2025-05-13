@@ -29,6 +29,19 @@
         wait: true
         state: present
 
+    - name: Create Credential for Job Template
+      ansible.controller.credential:
+        name: "{{ machine_credential_name }}"
+        organization: "{{ aap_organization_name }}"
+        credential_type: "Machine"
+        controller_host: "{{ aap_controller_host }}"
+        controller_username: "{{ aap_controller_username }}"
+        controller_password: "{{ aap_controller_password }}"
+        validate_certs: "{{ aap_validate_certs | default(false) }}"
+        state: present
+        inputs:
+          ssh_key_data: "{{ machine_credential_private_key }}"
+
     - name: Create Job Template for Hello World Playbook
       ansible.controller.job_template:
         name: "{{ job_template_name_from_playbook }}"
@@ -41,4 +54,6 @@
         controller_username: "{{ aap_controller_username }}"
         controller_password: "{{ aap_controller_password }}"
         validate_certs: "{{ aap_validate_certs | default(false) }}"
+        credentials:
+          - "{{ machine_credential_name }}"
         state: present

@@ -16,6 +16,8 @@ resource "ansible_playbook" "configure_aap_resources" {
     project_name_for_playbook     = var.project_name_for_playbook
     job_template_name_from_playbook = var.job_template_name_from_playbook
     inventory_name_for_jt         = aap_inventory.demo_inventory.name # Pass the name of the TF-created inventory
+    machine_credential_private_key = var.machine_credential_private_key
+    machine_credential_name = var.machine_credential_name
   }
 
   # Ensure inventory exists before playbook tries to use its name for JT configuration

@@ -49,3 +49,15 @@ variable "inventory_name_tf" {
   type        = string
   default     = "Terraform Demo Inventory (TF)"
 }
+
+variable "machine_credential_private_key" {
+  description = "Private key for the machine credential in AAP."
+  type        = string
+  sensitive   = true
+}
+
+variable "machine_credential_name" {
+  description = "Name of the machine credential in AAP."
+  type        = string
+  default     = "Terraform Demo Credential"
+}
