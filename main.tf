@@ -11,6 +11,7 @@ module "terraform_aap_job_template" {
   inventory_name_tf               = var.inventory_name_tf
   machine_credential_private_key  = var.machine_credential_private_key
   machine_credential_name         = var.machine_credential_name
+  aap_server_ssh_private_key = var.aap_server_ssh_private_key
 }
 
 module "terraform_aap_launch_job" {

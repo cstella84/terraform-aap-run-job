@@ -35,7 +35,7 @@ data "http" "job_template_id" {
     Authorization = "Basic ${base64encode("${var.aap_controller_username}:${var.aap_controller_password}")}"
   }
   insecure   = true
-  depends_on = [ansible_playbook.configure_aap_resources]
+  depends_on = [terraform_data.run_playbook_on_aap_server]
 }
 
 data "http" "inventory_id" {
@@ -46,7 +46,7 @@ data "http" "inventory_id" {
     Authorization = "Basic ${base64encode("${var.aap_controller_username}:${var.aap_controller_password}")}"
   }
   insecure   = true
-  depends_on = [ansible_playbook.configure_aap_resources]
+  depends_on = [terraform_data.run_playbook_on_aap_server]
 }
 
 output "job_template_id" {
@@ -55,8 +55,4 @@ output "job_template_id" {
 
 output "inventory_id" {
   value = jsondecode(data.http.inventory_id.response_body)["results"][0]["id"]
-}
-
-output "playbook_execution_summary" {
-  value = ansible_playbook.configure_aap_resources.ansible_playbook_stdout
 }

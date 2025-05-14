@@ -67,3 +67,9 @@ variable "machine_credential_username" {
   type        = string
   default     = "ubuntu"
 }
+
+variable "aap_server_ssh_private_key" {
+  description = "The private key for SSH access to the AAP server"
+  type        = string
+  sensitive   = true
+}
