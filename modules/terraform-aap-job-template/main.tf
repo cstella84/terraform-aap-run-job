@@ -12,7 +12,7 @@ resource "terraform_data" "run_playbook_on_aap_server" {
 
   connection {
     type        = "ssh"
-    user        = "cstella"
+    user        = "ec2-user"
     private_key = var.aap_server_ssh_private_key
     host        = local.aap_controller_ip
   }
