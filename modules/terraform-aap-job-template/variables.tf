@@ -42,7 +42,7 @@ variable "job_template_name_from_playbook" {
 variable "inventory_name_tf" {
   description = "Name for the inventory to be created by Terraform in AAP."
   type        = string
-  default     = "Terraform Demo Inventory (TF)"
+  default     = "hello-world-inventory"
 }
 
 variable "machine_credential_private_key" {
@@ -55,4 +55,10 @@ variable "machine_credential_name" {
   description = "Name of the machine credential in AAP."
   type        = string
   default     = "Terraform Demo Credential"
+}
+
+variable "machine_credential_username" {
+  description = "Username for the machine credential in AAP. This is the user that will be used to connect to the EC2 instance."
+  type        = string
+  default     = "ubuntu"
 }

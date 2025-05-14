@@ -19,4 +19,6 @@ module "terraform_aap_launch_job" {
   ec2_instance_address = var.ec2_instance_address
   job_template_id      = module.terraform_aap_job_template.job_template_id
   inventory_id         = module.terraform_aap_job_template.inventory_id
+
+  depends_on = [ module.terraform_aap_job_template ]
 }

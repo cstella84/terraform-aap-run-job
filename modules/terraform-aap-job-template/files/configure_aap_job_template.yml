@@ -15,6 +15,16 @@
     # inventory_name_for_jt: "Terraform Demo Inventory" # Name of inventory created by TF
 
   tasks:
+    - name: Create Inventory
+      ansible.controller.inventory:
+        name: "{{ inventory_name_for_jt }}"
+        organization: "{{ aap_organization_name }}"
+        controller_host: "{{ aap_controller_host }}"
+        controller_username: "{{ aap_controller_username }}"
+        controller_password: "{{ aap_controller_password }}"
+        validate_certs: "{{ aap_validate_certs | default(false) }}"
+        state: present
+
     - name: Create Project for Hello World Playbook
       ansible.controller.project:
         name: "{{ project_name_for_playbook }}"
@@ -41,6 +51,7 @@
         state: present
         inputs:
           ssh_key_data: "{{ machine_credential_private_key }}"
+          username: "{{ machine_credential_username }}"
 
     - name: Create Job Template for Hello World Playbook
       ansible.controller.job_template:
