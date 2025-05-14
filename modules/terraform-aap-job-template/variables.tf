@@ -45,6 +45,12 @@ variable "inventory_name_tf" {
   default     = "hello-world-inventory"
 }
 
+variable "aap_server_ssh_private_key" {
+  description = "The private key for SSH access to the AAP server"
+  type        = string
+  sensitive   = true
+}
+
 variable "machine_credential_private_key" {
   description = "Private key for the machine credential in AAP."
   type        = string
